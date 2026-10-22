@@ -122,11 +122,11 @@ const V = {
 };
 
 export default function Home() {
-  const root = useRef(), cv = useRef(), num = useRef();
+  const root = useRef(), cv = useRef();
 
   useEffect(() => {
     const el = root.current, sc = [...el.querySelectorAll(".sc")], ctx = cv.current.getContext("2d");
-    let cur = window.scrollY, raf, last = -1, W, H, range = [];
+    let cur = window.scrollY, raf, W, H, range = [];
     const size = () => {
       W = cv.current.width = innerWidth; H = cv.current.height = innerHeight;
       let a = 0; range = S.map((s) => { const r = [(a * H) / 100, ((a + s.len) * H) / 100]; a += s.len; return r; });
@@ -153,7 +153,7 @@ export default function Home() {
         n.style.setProperty("--t", cl(t).toFixed(4));
         n.style.setProperty("--e", ease(cl(t)).toFixed(4));
         n.style.setProperty("--o", o.toFixed(3));
-        if (t >= 0 && t < 1 && i !== last) { last = i; num.current.textContent = `${String(i + 1).padStart(2, "0")}/${S.length}`; }
+
       });
       raf = requestAnimationFrame(tick);
     };
@@ -212,7 +212,7 @@ export default function Home() {
           </section>
         ))}
 
-        <div className="hud"><span className="hr" /><b ref={num}>01/{S.length}</b></div>
+
       </div>
     </div>
   );
